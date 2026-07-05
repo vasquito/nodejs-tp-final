@@ -44,7 +44,7 @@ JWT_SECRET=tu_clave_secreta_para_jwt
 - Iniciar el servidor:
   
   ```bash
-  npm run start
+  npm run local
   ```
 
 El servidor queda disponible en:  
@@ -58,11 +58,12 @@ La documentación Swagger está disponible en:
 ## Vercel
 
 El servidor queda disponible en:  
-👉 `http://localhost:3000`
+👉 `https://nodejs-tp-final-pi.vercel.app/`
 
 La documentación Swagger está disponible en:  
-👉 `http://localhost:3000/docs`
+👉 `https://nodejs-tp-final-pi.vercel.app/docs/`
 
+![alt text](image.png)
 ---
 
 ## 🔑 Endpoints
@@ -113,7 +114,8 @@ Authorization: Bearer <token>
 
 ```
 src/
- ├── index.js            # Configuración de Express
+ ├── app.js              # Configuración de Express
+ ├── server.js           # Listen
  ├── config/             # Configuraciónes
  ├── controllers/        # Controladores de rutas
  ├── security/           # Seguridad / Autenticación JWT 
