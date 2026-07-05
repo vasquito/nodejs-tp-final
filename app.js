@@ -16,8 +16,7 @@ app.use(cors()); // habilita CORS
 app.use(bodyParser.json()); // interpreta JSON en body
 
 // Swagger UI
-app.use("/docs", swaggerUiMiddleware.serve);
-app.get("/docs", swaggerUiMiddleware.setup(swaggerSpec));
+app.use("/api/docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
 
 // Rutas principales
 app.use("/api", productsRouter);
@@ -29,7 +28,7 @@ app.get("/", (req, res) => {
     <h1>Tp Final</h1>
     <p>Servidor Node.js con Express funcionando correctamente 🚀🚀🚀</p>
     <p>Ver la documentación de la API en 
-      <a href="/docs" target="_blank">Swagger UI</a>
+      <a href="/api/docs" target="_blank">Swagger UI</a>
     </p>
   `);
 });
