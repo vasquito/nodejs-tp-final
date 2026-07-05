@@ -1,16 +1,16 @@
 import express from "express";
+import { swaggerSpec, swaggerUiMiddleware } from "./config/swagger.js"; 
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import productsRouter from "./routes/products.routes.js";
 import authRouter from "./routes/auth.routes.js";
 import errorHandler from "./handlers/error.handler.js";
-import { swaggerSpec, swaggerUiMiddleware } from "./config/swagger.js";
-
 
 dotenv.config(); // Carga variables desde .env
 
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 
 // Middleware global
