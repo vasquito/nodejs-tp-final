@@ -16,7 +16,8 @@ app.use(cors()); // habilita CORS
 app.use(bodyParser.json()); // interpreta JSON en body
 
 // Swagger UI
-app.use("/docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
+app.use("/docs", swaggerUiMiddleware.serve);
+app.get("/docs", swaggerUiMiddleware.setup(swaggerSpec));
 
 // Rutas principales
 app.use("/api", productsRouter);
