@@ -1,11 +1,13 @@
 import express from "express";
-import { swaggerSpec, swaggerUiMiddleware } from "./config/swagger.js"; 
+import { swaggerSpec } from "./config/swagger.js"; 
+import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import productsRouter from "./routes/products.routes.js";
 import authRouter from "./routes/auth.routes.js";
 import errorHandler from "./handlers/error.handler.js";
+
 
 dotenv.config(); // Carga variables desde .env
 
@@ -15,12 +17,15 @@ const app = express();
 app.use(cors()); // habilita CORS
 app.use(bodyParser.json()); // interpreta JSON en body
 
-// Swagger UI
-app.use("/api/docs", swaggerUiMiddleware.serve, swaggerUiMiddleware.setup(swaggerSpec));
 
 // Rutas principales
 app.use("/api", productsRouter);
 app.use("/api/auth", authRouter);
+
+// Swagger UI
+app.get("/docs", (req, res) => {
+  res.send(swaggerUi.generateHTML(swaggerSpec));
+});
 
 // Ruta raíz
 app.get("/", (req, res) => {
@@ -28,7 +33,7 @@ app.get("/", (req, res) => {
     <h1>Tp Final</h1>
     <p>Servidor Node.js con Express funcionando correctamente 🚀🚀🚀</p>
     <p>Ver la documentación de la API en 
-      <a href="/api/docs" target="_blank">Swagger UI</a>
+      <a href="/docs" target="_blank">Swagger UI</a>
     </p>
   `);
 });
