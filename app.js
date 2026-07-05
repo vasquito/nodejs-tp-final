@@ -11,8 +11,6 @@ dotenv.config(); // Carga variables desde .env
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-
 // Middleware global
 app.use(cors()); // habilita CORS
 app.use(bodyParser.json()); // interpreta JSON en body
@@ -49,7 +47,5 @@ app.use((req, res) => {
 // Middleware global de errores (¡siempre al final!)
 app.use(errorHandler);
 
-// Inicio del servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+// Inicio del servidor (vercel)
+export default app;
